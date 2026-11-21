@@ -15,7 +15,7 @@
   <body>
     <header>
       <nav aria-label="Main navigation">
-        <a class="logo" href="index.html">
+        <div class="logo">
           <img
             src="assets/fes-logo.png"
             alt="FES"
@@ -23,7 +23,7 @@
             width="34"
           />
           <span class="logo__title"><strong>Simplified</strong> Flix</span>
-        </a>
+        </div>
 
         <form class="search-form" id="search-form" role="search">
           <label class="sr-only" for="query">Movie title</label>
@@ -47,6 +47,7 @@
             </svg>
           </button>
         </form>
+        <a class="home-link header-home" href="index.html">Home</a>
       </nav>
     </header>
 
@@ -73,7 +74,10 @@
               <option value="newest">Newest</option>
               <option value="oldest">Oldest</option>
             </select>
-            <i class="fa-solid fa-chevron-down sort-select__arrow" aria-hidden="true"></i>
+            <i
+              class="fa-solid fa-chevron-down sort-select__arrow"
+              aria-hidden="true"
+            ></i>
           </span>
         </label>
       </div>
@@ -117,7 +121,7 @@
 
       <template id="film-card">
         <article class="movie-card">
-          <a>
+          <a target="_blank" rel="noopener noreferrer">
             <div class="movie-card__poster">
               <span aria-hidden="true">Poster Unavailable</span>
               <img alt="" loading="lazy" hidden />
@@ -130,6 +134,9 @@
     </main>
 
     <footer>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a class="home-link" href="index.html">Home</a>
+      </nav>
       <p>
         <strong>Simplified Flix</strong> is a project by
         <a href="https://github.com/AshlynNicholsDEV">Ashlyn Nichols</a>

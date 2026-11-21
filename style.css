@@ -48,7 +48,7 @@ header {
   border-bottom: 1px solid var(--line);
 }
 
-nav {
+header nav {
   display: grid;
   grid-template-columns: 1fr minmax(14rem, 26rem) 1fr;
   gap: 1rem;
@@ -81,6 +81,26 @@ a {
 .logo__title {
   letter-spacing: 0.025em;
 }
+.home-link {
+  display: inline-block;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 650;
+}
+.home-link:hover {
+  background: var(--surface);
+}
+.header-home {
+  grid-column: 3;
+  justify-self: end;
+}
+.footer-nav {
+  margin-bottom: 0.5rem;
+}
+
 .search-form {
   position: relative;
   grid-column: 2;
@@ -308,12 +328,16 @@ footer {
 }
 
 @media (max-width: 42rem) {
-  nav {
-    grid-template-columns: minmax(0, 1fr);
+  .header-home {
+    grid-column: 2;
+  }
+  header nav {
+    grid-template-columns: minmax(0, 1fr) auto;
     gap: 0.65rem;
   }
   .search-form {
-    grid-column: 1;
+    grid-column: 1 / -1;
+    grid-row: 2;
   }
   .movies-grid {
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 8rem), 1fr));
