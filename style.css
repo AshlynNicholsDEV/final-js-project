@@ -1,0 +1,393 @@
+:root {
+  color-scheme: dark;
+
+  --page: #101114;
+  --surface: #1c1e23;
+  --line: #393c44;
+  --text: #f6f3ed;
+  --muted: #bab6ae;
+  --gold: #ffc766;
+  --gold-hover: #ffda91;
+
+  --header: var(--surface);
+  --card: var(--surface);
+  --input: var(--page);
+  --on-gold: var(--page);
+  --focus: var(--gold);
+
+  color: var(--text);
+  background: var(--page);
+  font:
+    100%/1.5 system-ui,
+    sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background:
+    linear-gradient(
+      125deg,
+      color-mix(in srgb, var(--page) 93%, transparent),
+      color-mix(in srgb, var(--surface) 89%, transparent)
+    ),
+    url("./assets/film-reel.jpg") center top / cover fixed;
+}
+
+header {
+  background: var(--header);
+  border-bottom: 1px solid var(--line);
+}
+
+nav {
+  display: grid;
+  grid-template-columns: 1fr minmax(14rem, 26rem) 1fr;
+  gap: 1rem;
+  align-items: center;
+  min-height: 4.5rem;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding: 0.75rem 1.25rem;
+}
+
+a {
+  color: inherit;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  gap: 0.55rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.logo__img {
+  display: block;
+  width: 34px;
+  height: auto;
+  filter: drop-shadow(0 0 3px var(--gold));
+}
+.logo__title {
+  letter-spacing: 0.025em;
+}
+.search-form {
+  position: relative;
+  grid-column: 2;
+}
+.search-form__input {
+  width: 100%;
+  padding-right: 3rem;
+}
+
+input,
+button,
+select {
+  font: inherit;
+  border-radius: 0.5rem;
+  min-height: 2.6rem;
+  padding: 0.45rem 0.75rem;
+  filter: drop-shadow(0 0 3px var(--gold));
+}
+
+input,
+select {
+  border: 1px solid var(--line);
+  background: var(--input);
+  color: var(--text);
+}
+
+input::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+input:focus {
+  border-color: var(--focus);
+}
+
+button {
+  border: 0;
+  color: var(--on-gold);
+  background: var(--gold);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--gold-hover);
+}
+
+.search-form__button {
+  position: absolute;
+  inset: 0 0.25rem 0 auto;
+  margin-block: 0.2rem;
+  min-height: auto;
+  display: grid;
+  place-items: center;
+  padding: 0.45rem;
+  color: var(--gold);
+  background: transparent;
+}
+
+.search-form__button:hover {
+  color: var(--on-gold);
+}
+.search-form__button svg {
+  display: block;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+:focus-visible {
+  outline: 1.5px solid var(--focus);
+  outline-offset: 1.5px;
+}
+
+main {
+  flex: 1;
+  width: min(72rem, 100%);
+  padding: 1.5rem 1.25rem 2.5rem;
+  margin-inline: auto;
+}
+
+.sort-select {
+  position: relative;
+}
+
+#sort {
+  appearance: none; /* Hide the browser's arrow */
+  padding-inline-end: 2rem; /* Leave room for your arrow */
+}
+
+.sort-select__arrow {
+  position: absolute;
+  inset-inline-end: 0.65rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none; /* Let clicks open the dropdown */
+}
+
+.controls,
+.feedback,
+.sort-label {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.controls {
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.feedback {
+  min-height: 2rem;
+}
+.feedback p {
+  margin: 0;
+}
+
+input,
+button,
+select {
+  transition: box-shadow 160ms ease;
+}
+
+input:hover,
+button:hover:not(:disabled),
+select:hover {
+  box-shadow: 0 0 0 2.3px var(--gold);
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 10.5rem), 1fr));
+  gap: 1rem;
+}
+
+.movie-card {
+  min-width: 0;
+  background: var(--card);
+  border-radius: 0.75rem;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .movie-card {
+    transition: transform 180ms ease-out;
+  }
+
+  .movie-card:hover {
+    position: relative;
+    z-index: 1;
+    transform: scale(1.035);
+  }
+}
+
+.movie-card a {
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  border-radius: inherit;
+}
+.movie-card a:hover h3 {
+  text-decoration: underline;
+}
+
+.movie-card__poster {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 2 / 3;
+  border-radius: 0.75rem 0.75rem 0 0;
+  overflow: hidden;
+  text-align: center;
+  color: var(--muted);
+  background: var(--card);
+}
+
+.movie-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.movie-card h3 {
+  margin: 0.65rem 0.75rem 0.2rem;
+  font-size: 1rem;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+.movie-card time {
+  display: block;
+  padding: 0 0.75rem 0.7rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.pagination button:disabled {
+  cursor: default;
+  background: var(--card);
+  color: var(--muted);
+}
+
+#spinner {
+  color: var(--gold);
+  font-size: 1.15rem;
+}
+
+footer {
+  background: var(--header);
+  color: var(--muted);
+  text-align: center;
+  padding: 1rem;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+@media (max-width: 42rem) {
+  nav {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.65rem;
+  }
+  .search-form {
+    grid-column: 1;
+  }
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 8rem), 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .movies-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+.movie-skeleton {
+  border-radius: 0.75rem;
+  background: var(--card);
+  overflow: hidden;
+}
+
+.movie-skeleton__poster,
+.movie-skeleton__details span {
+  background: linear-gradient(
+    105deg,
+    var(--surface) 25%,
+    var(--line) 50%,
+    var(--surface) 75%
+  );
+  background-size: 250% 100%;
+  animation: skeleton-shimmer 1.25s ease-in-out infinite;
+}
+
+.movie-skeleton__poster {
+  aspect-ratio: 2 / 3;
+  display: grid;
+  place-items: center;
+}
+
+.movie-skeleton__details {
+  display: grid;
+  gap: 0.45rem;
+  padding: 0.65rem 0.75rem 0.75rem;
+}
+
+.movie-skeleton__details span {
+  height: 0.85rem;
+  width: 78%;
+  border-radius: 0.25rem;
+}
+
+.movie-skeleton__details span:last-child {
+  width: 34%;
+}
+
+@keyframes skeleton-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .movie-skeleton__poster,
+  .movie-skeleton__details span {
+    animation: none;
+  }
+}
+
+.movie-skeleton__spinner {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--header);
+  color: var(--gold);
+  font-size: 1.5rem;
+}

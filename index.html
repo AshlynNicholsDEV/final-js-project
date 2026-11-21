@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simplified Flix</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="omdb.local.js" defer></script>
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <nav aria-label="Main navigation">
+        <a class="logo" href="index.html">
+          <img
+            src="assets/fes-logo.png"
+            alt="FES"
+            class="logo__img"
+            width="34"
+          />
+          <span class="logo__title"><strong>Simplified</strong> Flix</span>
+        </a>
+
+        <form class="search-form" id="search-form" role="search">
+          <label class="sr-only" for="query">Movie title</label>
+          <input
+            id="query"
+            class="search-form__input"
+            type="search"
+            placeholder="Search movies…"
+          />
+          <button class="search-form__button" type="submit" aria-label="Search">
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="m16 16 5 5"></path>
+            </svg>
+          </button>
+        </form>
+      </nav>
+    </header>
+
+    <main>
+      <h1 class="sr-only">Movie search</h1>
+      <div class="controls">
+        <div class="feedback">
+          <span
+            id="spinner"
+            class="fa-solid fa-circle-notch fa-spin"
+            hidden
+            aria-hidden="true"
+          ></span>
+          <p id="status" role="status"></p>
+          <button id="retry" type="button" hidden>Retry</button>
+        </div>
+        <label class="sort-label" for="sort">
+          Sort this page
+          <span class="sort-select">
+            <select id="sort">
+              <option value="default">Default</option>
+              <option value="asc">A–Z</option>
+              <option value="desc">Z–A</option>
+              <option value="newest">Newest</option>
+              <option value="oldest">Oldest</option>
+            </select>
+            <i class="fa-solid fa-chevron-down sort-select__arrow" aria-hidden="true"></i>
+          </span>
+        </label>
+      </div>
+
+      <div
+        class="movies-grid"
+        id="loading-movies"
+        aria-hidden="true"
+        hidden
+      ></div>
+      <template id="movie-skeleton">
+        <div class="movie-skeleton">
+          <div class="movie-skeleton__poster">
+            <span
+              class="movie-skeleton__spinner fa-solid fa-circle-notch fa-spin"
+            ></span>
+          </div>
+          <div class="movie-skeleton__details">
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </template>
+
+      <div class="movies-grid" id="movies"></div>
+      <div
+        class="pagination"
+        id="pagination"
+        role="group"
+        aria-label="Search result pages"
+        hidden
+      >
+        <button id="previous-page" type="button" aria-controls="movies">
+          Previous
+        </button>
+        <span id="page-label"></span>
+        <button id="next-page" type="button" aria-controls="movies">
+          Next
+        </button>
+      </div>
+
+      <template id="film-card">
+        <article class="movie-card">
+          <a>
+            <div class="movie-card__poster">
+              <span aria-hidden="true">Poster Unavailable</span>
+              <img alt="" loading="lazy" hidden />
+            </div>
+            <h3></h3>
+            <time></time>
+          </a>
+        </article>
+      </template>
+    </main>
+
+    <footer>
+      <p>
+        <strong>Simplified Flix</strong> is a project by
+        <a href="https://github.com/AshlynNicholsDEV">Ashlyn Nichols</a>
+      </p>
+    </footer>
+  </body>
+</html>
